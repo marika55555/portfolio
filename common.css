@@ -1,0 +1,30 @@
+#menu-toggle {
+    display: none;
+  }
+  
+  .hamburger-menu {
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    z-index: 9999;
+  }
+  
+  .menu-icon {
+    font-size: 30px;
+    cursor: pointer;
+    color: #ff69b4;
+    display: block;
+  }
+  
+  .menu {
+    display: none;
+    flex-direction: column;
+    background: #fff0f5;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    border: 1px solid #ffb6c1;
+    border-radius: 10px;
+    padding: 10px;
+  }
+  

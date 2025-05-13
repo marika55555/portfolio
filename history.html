@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>History</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+</head>
+  <style>
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: url('background.jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    #menu-toggle {
+      display: none;
+    }
+
+    .site-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #f8f8f8;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .nav {
+      position: relative;
+    }
+
+    .menu-icon {
+      cursor: pointer;
+      display: inline-block;
+    }
+
+    .menu-icon span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      margin: 5px;
+      background: #333;
+    }
+
+    .menu {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: none;
+      position: absolute;
+      right: 0;
+      background: white;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    #menu-toggle:checked + .menu-icon + .menu {
+      display: block;
+    }
+
+    .menu li a {
+      text-decoration: none;
+      display: block;
+      padding: 10px 20px;
+      color: #333;
+    }
+
+    .timeline {
+      padding: 100px 20px 300px; /* ← 下部に余白追加 */
+      position: relative;
+    }
+
+    .icon-item {
+      position: relative;
+      margin: 100px 0;
+      font-size: 48px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .icon {
+      width: 60px;
+      height: 60px;
+      line-height: 60px;
+      font-size: 36px;
+      background: rgba(255, 255, 255, 0);
+      border: 2px solid white;
+      border-radius: 50%;
+      display: inline-block;
+      box-shadow: 0 0 4px white;
+    }
+
+    .tooltip {
+      display: none;
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #000;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 5px;
+      white-space: nowrap;
+      font-size: 14px;
+    }
+
+    .icon-item:hover .tooltip {
+      display: block;
+    }
+
+    .icon-group {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin: 100px 0;
+      position: relative;
+    }
+
+    .icon-group .icon-item {
+      position: relative;
+      font-size: 48px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .icon-group .icon {
+      width: 64px;
+      height: 64px;
+      font-size: 32px;
+      background: rgba(255, 255, 255, 0);
+      border-radius: 50%;
+      border: 2px solid #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+      transition: transform 0.3s ease;
+    }
+
+    .side-icon {/*サイドアイコン*/
+      right: 100px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 999;
+      position: fixed;
+      font-size: 32px;
+    }
+
+    .side-icon.visible {
+      opacity: 1;
+    }
+
+    .bg-year {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      font-family: 'Orbitron', sans-serif;
+      color: rgba(255, 255, 255, 0.221); /* 淡く浮かぶ感じ */
+  font-size: 15vw;
+  letter-spacing: 0.2em;
+  text-shadow: 0 0 10px rgba(255,255,255,0.2);
+  transition: all 0.3s ease;
+      transform: translate(-50%, -50%);
+  
+      z-index: 0;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ヘッダー -->
+  <header class="site-header">
+    <div class="logo">My Logo</div>
+    <nav class="nav">
+      <input type="checkbox" id="menu-toggle" />
+      <label for="menu-toggle" class="menu-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+      <ul class="menu">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="portfolio.html">PORTFOLIO</a></li>
+        <li><a href="history.html">HISTORY</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- 年表タイムライン -->
+  <div class="timeline">
+
+  <!-- 1999年 -->
+  <div class="icon-item" data-year="1999">
+    <div class="icon">🍼</div>
+    <div class="tooltip">
+      宮城県仙台市に産まれる</div>
+  </div>
+
+  <!-- 2015年：アイコン2つを横並び -->
+  <div class="icon-group" data-year="2013">
+    
+    <!-- 2013年 -->
+    <div class="icon-item" data-year="2013">
+      <div class="icon">🏫</div>
+      <div class="tooltip">
+        中学で美術部の部長を務める</div>
+    </div>
+
+    <div class="icon-item" data-year="2013">
+      <div class="icon">🎖️</div>
+      <div class="tooltip">県内の絵画コンクールに入選</div>
+    </div>
+
+  </div>
+
+    <!-- 2014年 -->
+    <div class="icon-item" data-year="2014">
+      <div class="icon">🥋</div>
+      <div class="tooltip">
+        心身統一合氣道5級を取得</div>
+    </div>
+
+    <!-- 2015年：アイコン2つを横並び -->
+    <div class="icon-group" data-year="2015">
+      
+      <div class="icon-item" data-year="2015">
+        <div class="icon">👩‍🎨</div>
+        <div class="tooltip">美術デザイン科の高校に通う</div>
+      </div>
+      <div class="icon-item" data-year="2015">
+        <div class="icon">🍕</div>
+        <div class="tooltip">ピザ屋でアルバイト</div>
+      </div>
+
+      <div class="icon-item" data-year="2015">
+        <div class="icon">🏪</div>
+        <div class="tooltip">コンビニでアルバイト</div>
+      </div>
+
+    </div>
+
+     <!-- 2016年 -->
+     <div class="icon-group" data-year="2016">
+      <div class="icon-item">
+      <div class="icon">🏆</div>
+      <div class="tooltip">ファッション甲子園にデザイン入選 全国大会に宮城県代表で出場</div>
+    </div>
+  
+      <div class="icon-item" data-year="2016">
+        <div class="icon">🏛️</div>
+        <div class="tooltip">修学旅行で初めての海外旅行 シンガポールでアートに触れる</div>
+      </div>
+    </div>
+
+    <!-- 2018年 -->
+  <div class="icon-group" data-year="2018">
+   <div class="icon-item">
+   <div class="icon">👩‍💼</div>
+   <div class="tooltip">IT系営業会社で正社員勤務</div>
+    </div>
+  
+    <div class="icon-item" data-year="2018">
+      <div class="icon">🏯</div>
+      <div class="tooltip">当時の同期(現:大親友)と韓国旅行</div>
+    </div>
+  </div>
+    
+
+    <!-- 2019年 -->
+    <div class="icon-group" data-year="2019">
+      <div class="icon-item">
+      <div class="icon">🛕</div>
+      <div class="tooltip">大親友とタイ旅行</div>
+    </div>
+  
+    <div class="icon-item" data-year="2019">
+      <div class="icon">🍴</div>
+      <div class="tooltip">美容部員を目指しながら飲食店でアルバイト</div>
+    </div>
+
+    <div class="icon-item" data-year="2019">
+      <div class="icon">💃</div>
+      <div class="tooltip">スポーツジムに通いズンバにハマる</div>
+    </div>
+
+    <div class="icon-item" data-year="2019">
+      <div class="icon">🥮</div>
+      <div class="tooltip">母と台湾旅行</div>
+    </div>   
+
+  </div>
+
+  
+
+  <div class="icon-group" data-year="2020">
+    <div class="icon-item" data-year="2020">
+      <div class="icon">🎍</div>
+      <div class="tooltip">成人式を迎える</div>
+    </div>
+    
+    <div class="icon-item" data-year="2020">
+      <div class="icon">💄</div>
+      <div class="tooltip">化粧品会社①百貨店美容部員として契約社員勤務</div>
+    </div>
+
+    <div class="icon-item" data-year="2020">
+      <div class="icon">🧘</div>
+      <div class="tooltip">ホットヨガに通う</div>
+    </div>
+
+  </div>
+
+
+    <div class="icon-group" data-year="2020">
+    <div class="icon-item" data-year="2020">
+      <div class="icon">💋</div>
+      <div class="tooltip">化粧品会社②百貨店美容部員として正社員勤務</div>
+    </div>
+
+    <div class="icon-item" data-year="2020">
+      <div class="icon">🏋️‍♀️</div>
+      <div class="tooltip">パーソナルジムに通う</div>
+    </div>
+
+  </div>
+
+  <div class="icon-item" data-year="2021">
+    <div class="icon">🤸‍♂️</div>
+    <div class="tooltip">数多の美容サロン・健康院に通い自己を高める</div>
+  </div>
+
+  
+  <div class="icon-item" data-year="2022">
+    <div class="icon">⛲</div>
+    <div class="tooltip">毎月都内百貨店へ出張/ついでにアートに触れる小旅行をする</div>
+  </div>
+
+  <div class="icon-item" data-year="2023">
+    <div class="icon">🗺️</div>
+    <div class="tooltip">初めての一人海外旅行 タイ&ベトナム８日間</div>
+  </div>
+
+  <div class="icon-group" data-year="2020">
+  <div class="icon-item" data-year="2024">
+    <div class="icon">🏖️</div>
+    <div class="tooltip">母の誕生日祝いにハワイ旅行をプレゼント</div>
+  </div>
+
+   <div class="icon-item" data-year="2024">
+   <div class="icon">🌺</div>
+   <div class="tooltip">宮古島でリゾートバイト</div>
+    </div>
+
+    <div class="icon-item" data-year="2024">
+    <div class="icon">🛺</div>
+    <div class="tooltip">すっかりタイにハマり一人で3度目のタイ旅行</div>
+    </div>
+
+    <div class="icon-item" data-year="2024">
+      <div class="icon">⛄</div>
+      <div class="tooltip">北海道リゾートホテルで派遣社員勤務</div>
+    </div>
+  </div>
+
+
+    <div class="icon-item" data-year="2025">
+      <div class="icon">🌟</div>
+      <div class="tooltip">Wedデザイナーを目指し独学勉強中</div>
+    </div>
+
+
+  </div>
+
+  <!-- 動くスナックアイコン -->
+  <div id="snackIcon" class="side-icon">🧘</div>
+
+  <!-- 背景の年号 -->
+  <div class="bg-year" id="bgYear">2020</div>
+
+  <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const items = document.querySelectorAll('.icon-item');
+    const bgYear = document.getElementById('bgYear');
+
+    // 年号表示
+    window.addEventListener('scroll', () => {
+      let current = '2020';
+      items.forEach(item => {
+        const rect = item.getBoundingClientRect();
+        if (rect.top < window.innerHeight / 2) {
+          current = item.getAttribute('data-year');
+        }
+      });
+      bgYear.textContent = current;
+
+      if (menuToggle.checked) {
+        menuToggle.checked = false;
+      }
+    });
+    
+
+    // メニュー外クリックで閉じる
+    document.addEventListener('click', (e) => {
+      const menu = document.querySelector('.menu');
+      const menuIcon = document.querySelector('.menu-icon');
+      if (
+        !menu.contains(e.target) &&
+        !menuIcon.contains(e.target) &&
+        e.target !== menuToggle
+      ) {
+        menuToggle.checked = false;
+      }
+    });
+
+    // ツールチップの表示切り替え（スマホ用）
+    items.forEach(item => {
+      item.addEventListener('click', () => {
+        const tooltip = item.querySelector('.tooltip');
+        const isVisible = tooltip.style.display === 'block';
+        document.querySelectorAll('.tooltip').forEach(tip => {
+          tip.style.display = 'none';
+        });
+        if (!isVisible) {
+          tooltip.style.display = 'block';
+        }
+      });
+    });
+
+    // 🍸アイコンをスクロールに応じて移動
+    document.addEventListener('DOMContentLoaded', () => {
+      const snackIcon = document.getElementById('snackIcon');
+      const y2020 = document.querySelector('[data-year="2020"]');
+      const y2023 = document.querySelector('[data-year="2023"]');
+
+      if (!snackIcon || !y2020 || !y2023) return;
+
+      const updateSnackPosition = () => {
+        const rect2020 = y2020.getBoundingClientRect();
+        const rect2023 = y2023.getBoundingClientRect();
+        const top2020 = rect2020.top + window.scrollY;
+        const top2023 = rect2023.top + window.scrollY;
+
+        const scrollY = window.scrollY;
+        const progress = Math.min(Math.max((scrollY - top2020) / (top2023 - top2020), 0), 1);
+
+        const minY = 150;
+        const maxY = 600;
+        const newY = minY + (maxY - minY) * progress;
+
+        snackIcon.style.top = `${newY}px`;
+
+        if (progress > 0 && progress < 1) {
+          snackIcon.classList.add('visible');
+        } else {
+          snackIcon.classList.remove('visible');
+        }
+      };
+
+      window.addEventListener('scroll', updateSnackPosition);
+      updateSnackPosition();
+    });
+  </script>
+</body>
+</html>
