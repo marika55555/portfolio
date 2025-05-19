@@ -1,41 +1,8 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <!-- Google Fonts（大正ロマン風フォント）読み込み -->
-  <link href="https://fonts.googleapis.com/css2?family=Zen+Antique&display=swap" rel="stylesheet">
 
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MARIKA WATANABE PORTFOLIO</title>
+ <style>
   
-  <style>
-    /* リセットと基本設定 */
-    * {
-      margin: 0;
-      padding: 100;
-      box-sizing: border-box;
-    }
-
-    body, html {
-      height: 100%;
-      font-family: 'Zen Antique', sans-serif; /** 大正ロマン風のフォントを全体に適用 **/
-      overflow-x: hidden;
-    }
-
-    /* 見出しのスタイル（レスポンシブ対応） */
-    h1 {
-      font-size: 2rem; /** モバイル時の見出しサイズ **/
-      margin-bottom: 1rem; /** 見出し下に余白 **/
-    }
-
-    @media screen and (min-width: 768px) {
-      h1 {
-        font-size: 3rem; /** タブレット以上で大きく見せる **/
-      }
-    }
-
-    /* 背景動画の設定 */
-    .background-video {
+  /* 背景動画の設定 */
+  .background-video {
       position: fixed;
       top: 0;
       left: 0;
@@ -43,163 +10,118 @@
       height: 100%;
       object-fit: cover;
       z-index: -1;
-    }
-
-    /* ヘッダーの基本設定 */
-    .header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      padding: 0.5rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 10;
-      background: rgba(0, 0, 0, 0.3);
-      color: white;
-    }
-
-    .logo {
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
-
-    /* ハンバーガーメニュー（スマホ表示） */
-    .menu-toggle {
-      display: none;
-    }
-
-    .menu-icon {
-      font-size: 2rem;
-      cursor: pointer;
-      display: block;
-    }
-
-    .menu {
-      display: none;
-      flex-direction: column;
-      background: rgba(0, 0, 0, 0.8);
-      position: absolute;
-      top: 60px;
-      right: 2rem;
-      padding: 1rem;
-      border-radius: 10px;
-    }
-
-    .menu a {
-      color: white;
-      text-decoration: none;
-      margin: 0.5rem 0;
-    }
-
-    .menu-toggle:checked + .menu-icon + .menu {
-      display: flex;
-    }
-
-    /* テキストのアニメーション表示 */
-    .intro-text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: white;
-      font-size: 14px;
-      opacity: 0;
-      transition: opacity 1s ease;
-      text-align: center;
-      max-width: 90%;
-      text-shadow: 7px 7px 7px #6a6a6aa4;
-    }
+   }
 
 
-    .intro-text.visible {
-      opacity: 1;
-    }
 
-    /* --------------------------
-      コンテナ余白のレスポンシブ対応
-    --------------------------- */
-    .container,
-    .intro-text {
-      padding: 1rem; /** スマホではやや狭めの余白（全体の4%） **/
-    }
+/* logoサイズ */
+.logo img {
+  height: 40px;
+  width: auto;
+}
 
-    @media screen and (min-width: 768px) {
-      .container,
-      .intro-text {
-        padding: 2rem; /** PC・タブレットでは余白を広めに変更 **/
-      }
-    }
+.hamburger {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1001;
+  cursor: pointer;
+}
 
-    /* ナビゲーションのPC表示スタイル */
-    @media (min-width: 768px) {
-      .menu {
-        position: static;
-        display: flex !important;
-        flex-direction: row;
-        background: none;
-        padding: 0;
-      }
+.hamburger img {
+  width: 40px;
+  height: auto;
+}
 
-      .menu a {
-        margin: 0 1rem;
-      }
+.nav-menu {
+  position: fixed;
+  top: 0;
+  right: -100%; /* ←初期は隠す */
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(156, 0, 0, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: right 0.3s ease;
+  z-index: 1000;
+}
 
-      .menu-icon {
-        display: none;
-      }
-    }
+.nav-menu.active {
+  right: 0;
+}
+
+.nav-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.nav-menu li {
+  margin: 1.5rem 0;
+}
+
+.nav-menu li img {
+  width: 120px;
+  height: auto;
+}
+
   </style>
 </head>
 
 <body>
   <video autoplay muted loop playsinline class="background-video">
     <source src="your-video.mp4" type="video/mp4" />
-    ブラウザがvideoタグをサポートしていません。
   </video>
 
-  <header class="header">
-    <div class="logo">MarikaWatanabe</div>
-    <input type="checkbox" id="menu-toggle" class="menu-toggle" />
-    <label for="menu-toggle" class="menu-icon">&#9776;</label>
-    <nav class="menu">
-      <a href="index.html">Home</a>
-      <a href="portfolio.html">Portfolio</a>
-      <a href="history.html">History</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
-
-  <div class="intro-text" id="introText">
-    <h1>About Me</h1>
-    <p>はじめまして。</p>
-    <p>現在、UI/UXデザイナーとして制作に奮闘中の渡邊真梨佳です。</p>
-    <p>私が目指すデザインは、
-      「用がなくても、思わず開きたくなるサイト」
-      「誰かに教えたくなるアプリ」。
-    ユーザーの体験を想像しながら、利便性だけでなく
-    「体験を通じたワクワク感」を叶える
-    デザインアイデアを大切にしています。
-      </p>
-    <p>このポートフォリオでは、</p>
-    <p>【実際に制作・販売まで行ったアイドルグッズを元に作成したUIサイト】</p>
-    <p>【陶芸職人にイメージから作品を依頼できるUXアプリの架空アイデア案】</p>
-    【過去のイラスト・動画作品】などをご紹介しています。</p>
-
-    <p>そして私の、学歴・職歴・受賞歴・趣味をまとめたページ「history」
-      を、ポートフォリオの一部としてご用意しました。
-      ぜひ、楽しく閲覧していただけましたら幸いです。
-
-  
+<header class="header">
+  <div class="logo">
+    <a href="index.html">
+      <img src="shiro.png" alt="My Logo">
+    </a>
   </div>
 
+  <!-- ハンバーガー画像アイコン -->
+  <div class="hamburger" id="hamburger">
+    <img src="hannbaga.png" alt="Menu" />
+  </div>
+
+  <!-- メニュー本体（画像で構成） -->
+  <nav class="nav-menu" id="navMenu">
+    <ul>
+      <li><a href="index.html"><img src="home.png" alt="HOME"></a></li>
+      <li><a href="about.html"><img src="about.png" alt="ABOUT"></a></li>
+      <li><a href="portfolio.html"><img src="portfolio.png" alt="PORTFOLIO"></a></li>
+      <li><a href="history.html"><img src="history.png" alt="HISTORY"></a></li>
+    </ul>
+  </nav>
+</header>
+
+   <!-- ここに全HTMLを書いたあと -->
   <script>
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        const intro = document.getElementById('introText');
-        intro.classList.add('visible');
-      }, 2000);
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('navMenu');
+
+    // ハンバーガークリックで開閉
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+
+    // スクロールでメニュー自動閉じる
+    window.addEventListener('scroll', () => {
+      navMenu.classList.remove('active');
+    });
+
+    // メニュー外クリックで自動閉じる
+    document.addEventListener('click', (e) => {
+      if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+        navMenu.classList.remove('active');
+      }
     });
   </script>
+</body>
+</html>
+
 </body>
 </html>

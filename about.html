@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <!-- Google Fonts（大正ロマン風フォント）読み込み -->
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Antique&display=swap" rel="stylesheet">
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title></title>
+  
+  <style>
+    /* リセットと基本設定 */
+    * {
+      margin: 0;
+      padding: 100;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: 'Zen Antique', sans-serif; /** 大正ロマン風のフォントを全体に適用 **/
+      overflow-x: hidden;
+    }
+
+    /* 見出しのスタイル（レスポンシブ対応） */
+    h1 {
+      font-size: 2rem; /** モバイル時の見出しサイズ **/
+      margin-bottom: 1rem; /** 見出し下に余白 **/
+    }
+
+
+
+    /* 背景動画の設定 */
+    .background-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+html,body{
+    height: 100%;
+}
+body {
+  background: url('photo.png') no-repeat center center fixed;
+  background-size: cover;
+ 
+}
+
+.contents{
+    height: 100%;
+    background-color: rgb(206, 206, 206);
+}
+    /* ハンバーガーメニュー（スマホ表示） */
+    .menu-toggle {
+      display: none;
+    }
+
+    .menu-icon {
+      font-size: 2rem;
+      cursor: pointer;
+      display: block;
+    }
+
+    .menu {
+      display: none;
+      flex-direction: column;
+      background: rgba(0, 0, 0, 0.8);
+      position: absolute;
+      top: 60px;
+      right: 2rem;
+      padding: 1rem;
+      border-radius: 10px;
+    }
+
+    .menu a {
+      color: white;
+      text-decoration: none;
+      margin: 0.5rem 0;
+    }
+
+    .menu-toggle:checked + .menu-icon + .menu {
+      display: flex;
+    }
+
+    /* テキストのアニメーション表示 */
+.intro-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgb(232, 232, 232);
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 1s ease;
+  text-align: center;
+  max-width: 90%;
+  z-index: 2;
+  background-color: rgba(145, 11, 11, 0.9)
+
+
+
+}
+
+ .intro-text.visible {
+   opacity: 1;
+    }
+
+
+
+    
+.hamburger {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1001;
+  cursor: pointer;
+}
+
+.hamburger img {
+  width: 40px;
+  height: auto;
+}
+
+.nav-menu {
+  position: fixed;
+  top: 0;
+  right: -100%; /* ←初期は隠す */
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(133, 147, 12, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: right 0.3s ease;
+  z-index: 1000;
+}
+
+.nav-menu.active {
+  right: 0;
+}
+
+.nav-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.nav-menu li {
+  margin: 1.5rem 0;
+}
+
+.nav-menu li img {
+  width: 120px;
+  height: auto;
+}
+.video-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0; /* 一番下 */
+}
+
+   
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: transparent;
+  z-index: 1000;
+}
+
+.logo img {
+  height: 40px;
+  width: auto;
+}
+
+.hamburger {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1001;
+  cursor: pointer;
+}
+
+.hamburger img {
+  width: 40px;
+  height: auto;
+}
+
+.nav-menu {
+  position: fixed;
+  top: 0;
+  right: -100%; /* ←初期は隠す */
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(154, 141, 22, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: right 0.3s ease;
+  z-index: 1000;
+}
+
+.nav-menu.active {
+  right: 0;
+}
+
+.nav-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.nav-menu li {
+  margin: 1.5rem 0;
+}
+
+.nav-menu li img {
+  width: 120px;
+  height: auto;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* ここで暗さを調整 */
+  z-index: 1; /* 動画より上、コンテンツより下 */
+}
+
+.content {
+  position: relative;
+  z-index: 2; /* 一番上に表示されるように */
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .intro-text {
+    font-size: 10px; /* スマホ用に少し小さく */
+  }
+
+  .intro-text h1 {
+    font-size: 1rem; /* モバイル見出し用に小さく */
+  }
+
+  .intro-text p {
+    font-size: 9px; /* 各段落の文字サイズを調整 */
+  }
+}
+
+
+  </style>
+</head>
+
+<body>
+
+  <div class="overlay"></div>
+
+  <div class="intro-text" id="introText">
+    <h1>About</h1>
+    はじめまして、渡邊真梨佳です。
+    <br>
+「用がなくても開きたくなるサイト」「誰かに教えたくなるアプリ」をつくりたい。<br>
+そんな気持ちで日々デザインと向き合っています。<br>
+<br>
+見た目の美しさだけでなく、使う人の気持ちに寄り添った設計を大切にしています。<br>
+共感力と感受性をバランスよく使いながら“ユーザーの意思”をきちんと汲み取ることが、
+いいものづくりの出発点だと考えています。<br>
+<br>
+デザインのゴールはいつも「わかりやすくて、たのしい」こと。<br>
+見た人の気持ちがパッと明るくなる、そんな体験をお届けできるデザイナーを目指しています。
+<br><br><br>
+
+<p>
+
+</p>
+  
+  </div>
+
+
+    
+<header class="header">
+  <div class="logo">
+    <a href="index.html">
+      <img src="shiro.png" alt="My Logo">
+    </a>
+  </div>
+
+
+  <!-- ハンバーガー画像アイコン -->
+  <div class="hamburger" id="hamburger">
+    <img src="hannbaga.png" alt="Menu" />
+  </div>
+
+  <!-- メニュー本体（画像で構成） -->
+  <nav class="nav-menu" id="navMenu">
+    <ul>
+      <li><a href="index.html"><img src="home.png" alt="HOME"></a></li>
+      <li><a href="about.html"><img src="about.png" alt="ABOUT"></a></li>
+      <li><a href="portfolio.html"><img src="portfolio.png" alt="PORTFOLIO"></a></li>
+      <li><a href="history.html"><img src="history.png" alt="HISTORY"></a></li>
+    </ul>
+  </nav>
+</header>
+
+   <!-- ここに全HTMLを書いたあと -->
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('navMenu');
+
+    // ハンバーガークリックで開閉
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+
+    // スクロールでメニュー自動閉じる
+    window.addEventListener('scroll', () => {
+      navMenu.classList.remove('active');
+    });
+
+    // メニュー外クリックで自動閉じる
+    document.addEventListener('click', (e) => {
+      if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+        navMenu.classList.remove('active');
+      }
+    });
+  </script>
+</body>
+</html>
+
+  <script>
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const intro = document.getElementById('introText');
+        intro.classList.add('visible');
+      }, 2000);
+    });
+  </script>
+
+</body>
+</html>

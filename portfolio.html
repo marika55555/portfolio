@@ -15,7 +15,7 @@
 
     body, html {
       font-family: 'Zen Antique', sans-serif;
-      background-color: #111;
+      background-color: #ff0303b3;
       color: #fff;
     }
 
@@ -27,7 +27,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(0, 0, 0, 0);
       z-index: 10;
     }
 
@@ -47,42 +47,117 @@
       color: white;
     }
 
-    .menu {
-      display: none;
-      flex-direction: column;
-      background: rgba(0, 0, 0, 0.9);
-      position: absolute;
-      top: 60px;
-      right: 2rem;
-      padding: 1rem;
-      border-radius: 10px;
-    }
+   
 
-    .menu a {
-      color: white;
-      text-decoration: none;
-      margin: 0.5rem 0;
-    }
+  
 
-    .menu-toggle:checked + .menu-icon + .menu {
-      display: flex;
-    }
 
-    @media (min-width: 768px) {
-      .menu {
-        display: flex !important;
-        flex-direction: row;
-        background: none;
-        position: static;
-        padding: 0;
-      }
-      .menu a {
-        margin: 0 1rem;
-      }
-      .menu-icon {
-        display: none;
-      }
-    }
+.logo img {
+  height: 40px;
+  width: auto;
+}
+
+.hamburger {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1001;
+  cursor: pointer;
+}
+
+.hamburger img {
+  width: 40px;
+  height: auto;
+}
+
+.nav-menu {
+  position: fixed;
+  top: 0;
+  right: -100%; /* ←初期は隠す */
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(19, 80, 19, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: right 0.3s ease;
+  z-index: 1000;
+}
+
+.nav-menu.active {
+  right: 0;
+}
+
+.nav-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.nav-menu li {
+  margin: 1.5rem 0;
+}
+
+.nav-menu li img {
+  width: 120px;
+  height: auto;
+}
+
+.image-container {
+  position: relative;
+  display: inline-block;
+}
+
+.image-container img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* ホバーで表示される説明 */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+
+  /* はみ出し防止＆スクロール可能にする */
+  overflow-y: auto;
+  max-height: 100%;
+}
+
+/* テキストの折り返しと制限 */
+.description {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  word-wrap: break-word; /* 長い単語で改行 */
+  max-width: 90%; /* 横幅制限（スマホ対応） */
+}
+
+
+.image-container:hover .overlay {
+  opacity: 1;
+}
+
+.description {
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+
 
     main {
       padding: 120px 5vw 5vw;
@@ -101,7 +176,7 @@
     }
 
     .portfolio-item {
-      background: #222;
+      background: #ffc413;
       padding: 1rem;
       border-radius: 10px;
       transition: transform 0.3s;
@@ -114,7 +189,7 @@
     .portfolio-item img {
       width: 100%;
       height: auto;
-      border-radius: 8px;
+      border-radius: 10px;
     }
 
     .portfolio-item h2 {
@@ -123,69 +198,202 @@
       text-align: center;
     }
 
+
+    
     @media (min-width: 768px) {
       .portfolio-grid {
         grid-template-columns: repeat(2, 1fr);
       }
+
+      
     }
   </style>
 </head>
 
 <body>
-  <header class="header">
-    <div class="logo">Marika✡Watanabe</div>
-    <input type="checkbox" id="menu-toggle" class="menu-toggle" />
-    <label for="menu-toggle" class="menu-icon">&#9776;</label>
-    <nav class="menu">
-      <a href="index.html">Home</a>
-      <a href="portfolio.html">Portfolio</a>
-      <a href="history.html">History</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
 
   <main>
-    <h1>Portfolio</h1>
     <div class="portfolio-grid">
+
+ <div class="portfolio-item">
+  <a href="https://xd.adobe.com/view/5a3fc9ca-200a-4fdc-b8c4-5657d8376ad1-0f6c/" target="_blank">
+    <div class="image-container">
+      <img src="rolo.png" alt="Work 1"> 
+      <div class="overlay">
+        <p class="description">
+          過去、実際に制作と販売を行った<br>
+          アイドルグッズを元に制作した、ECデザイン。<br>
+          <br>
+          【ターゲットユーザー】<br>
+          10〜20代の女性ファン層<br>
+          <br>
+          【コンセプト】<br>
+          ・アイドル本人の人となりを感じられるサイト<br>
+          （ファッション性・ポップ・ユニーク・女性らしさ）<br>
+・ファンの胸を熱くする、推し×音楽×グッズのリンク<br>
+・シンプルでわかりやすい設計<br>
+<br>
+          ※portfolio用制作のため、サイトは架空のものです<br>
+          ※実際のタレント名・曲名を仮名に変更し制作<br>
+          <br>
+          【制作期間：3日間】<br>
+        </p>
+      </div>
+    </div>
+    <h2>アイドルグッズECサイト</h2>
+  </a>
+</div>
+
+
+
       <div class="portfolio-item">
-        <a href="https://xd.adobe.com/view/5a3fc9ca-200a-4fdc-b8c4-5657d8376ad1-0f6c/" target="_blank">
-          <img src="sumaho_site.png" alt="Work 1">
-          <h2>アイドルグッズECサイト</h2>
+        <a href="https://xd.adobe.com/view/deff35b8-3972-411c-88aa-b1c397fc0c53-8bac/" target="_blank">
+         <div class="image-container">
+          <img src="rokuro.png" alt="Work 2">
+           <div class="overlay">
+            <p class="description">
+感性をカタチにする、職人とつながる陶芸オーダーアプリ<br>
+<br>
+ 【ターゲットユーザー】<br>
+ ・自分だけの陶芸作品を作りたいが、イメージの言語化が苦手な人<br>
+ ・陶芸はできないが作品が好きな人（ギフト・インテリア等）<br>
+ ・オフシーズンにも仕事を得たい陶芸職人や工房<br>
+ <br>
+  【コンセプト】<br>
+視覚で直感的にイメージを伝え、職人とユーザーが共創する
+一点物陶芸オーダーサービス。感性のズレを防ぎながら、
+制作過程のワクワク感も共有できる仕組みを提供。
+<br>
+<br>
+
+　【良さ】<br>
+・「色・形・質感・雰囲気」など多軸検索で直感的に作品を探せる<br>
+・写真・イラストでイメージ共有できるチャット機能<br>
+・進捗確認や料金シミュレーション、ラッピング配送など、安心して依頼できる工夫が満載<br>
+  <br>
+  【制作期間：2日間(制作中)】<br>
+
+
+            </p>
+             </div>
+    </div>
+          <h2>陶芸オーダーアプリ（制作途中/アイデア案）</h2>
         </a>
       </div>
-      <div class="portfolio-item">
-        <a href="https://example.com/work2" target="_blank">
-          <img src="img/work2.jpg" alt="Work 2">
-          <h2>陶芸アプリUI設計</h2>
-        </a>
-      </div>
+
+
       <div class="portfolio-item">
         <a href="contact.png" target="_blank">
-          <img src="contact.png" alt="Work 3">
-          <h2>イラスト作品集1</h2>
+         <div class="image-container">
+          <img src="t.png" alt="Work 3">
+           <div class="overlay">
+            <p class="description">
+クリックで一覧に切り替わります
+
+</p>
+             </div>
+    </div>
+          <h2>作品集(18品)</h2>
         </a>
       </div>
+
+
+
       <div class="portfolio-item">
-        <a href="https://example.com/work4" target="_blank">
-          <img src="img/work4.jpg" alt="Work 4">
-          <h2>ブランドサイト風LP</h2>
+        <a href="photoy.png" target="_blank">
+         <div class="image-container">
+          <img src="samne.png" alt="Work 4">
+             <div class="overlay">
+            <p class="description">
+趣味の旅行で撮り溜めたフィルム写真×雰囲気を引き立てるフォントの組み合わせ<br>
+<br>
+作れるサイトイメージの参考カタログのように見ていただきたいと思い作成。<br>
+<br>
+【撮影地】<br>北海道/山形/宮城/大阪/沖縄/ハワイ/ベトナム/タイ/台湾<br>
+</p>
+             </div>
+    </div>
+          <h2>写真集(40枚)</h2>
+
         </a>
       </div>
+
+
       <div class="portfolio-item">
-        <a href="https://example.com/work5" target="_blank">
-          <img src="img/work5.jpg" alt="Work 5">
-          <h2>オリジナルLINEスタンプ</h2>
+        <a href="history.html" target="_blank">
+         <div class="image-container">
+          <img src="1999.png" alt="Work 3">
+           <div class="overlay">
+            <p class="description">
+当サイトのhistoryページ<br>
+<br>
+人生年表を楽しく見ていただけるよう工夫。<br>
+ターニングポイントになる出来事を、背景に年号＋絵文字で表現。<br>
+カーソルもしくはクリックで解説が読めます。<br>
+<br>
+【背景画像】<br>
+古いフィルムカメラを現像した際のカビを宇宙に模して使用<br>
+背景に合わせ、年号のフォントや絵文字表記の雰囲気を宇宙に統一
+
+</p>
+             </div>
+    </div>
+          <h2>portfolioサイト／historyページ</h2>
         </a>
       </div>
-      <div class="portfolio-item">
-        <a href="https://example.com/work6" target="_blank">
-          <img src="img/work6.jpg" alt="Work 6">
-          <h2>展示会チラシデザイン</h2>
-        </a>
-      </div>
+
     </div>
   </main>
 
   <script src="portfolio.js"></script>
+
+  <header class="header">
+  <div class="logo">
+    <a href="index.html">
+      <img src="shiro.png" alt="My Logo">
+    </a>
+  </div>
+
+  <!-- ハンバーガー画像アイコン -->
+  <div class="hamburger" id="hamburger">
+    <img src="hannbaga.png" alt="Menu" />
+  </div>
+
+  <!-- メニュー本体（画像で構成） -->
+  <nav class="nav-menu" id="navMenu">
+    <ul>
+      <li><a href="index.html"><img src="home.png" alt="HOME"></a></li>
+      <li><a href="about.html"><img src="about.png" alt="ABOUT"></a></li>
+      <li><a href="portfolio.html"><img src="portfolio.png" alt="PORTFOLIO"></a></li>
+      <li><a href="history.html"><img src="history.png" alt="HISTORY"></a></li>
+    </ul>
+  </nav>
+</header>
+
+   <!-- ここに全HTMLを書いたあと -->
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('navMenu');
+
+    // ハンバーガークリックで開閉
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+
+    // スクロールでメニュー自動閉じる
+    window.addEventListener('scroll', () => {
+      navMenu.classList.remove('active');
+    });
+
+    // メニュー外クリックで自動閉じる
+    document.addEventListener('click', (e) => {
+      if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+        navMenu.classList.remove('active');
+      }
+    });
+  </script>
+</body>
+</html>
+
 </body>
 </html>
