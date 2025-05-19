@@ -7,17 +7,39 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
  
   
-</header>
  
  <style>
-    body {
-      margin-top: 80px;
-      font-family: 'Noto Sans JP', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: url('background.jpg') no-repeat center center fixed;
-      background-size: cover;
-    }
+  body {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  z-index: 0;
+}
+
+/* 疑似要素で背景レイヤーを作成 */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1; /* 背景として後ろに置く */
+}
+
+/* 中身のコンテンツ */
+.content {
+  position: relative;
+  z-index: 1;
+  color: white;
+  padding: 2rem;
+  height: 2000px; /* スクロール確認用 */
+}
+
 
     #menu-toggle {
       display: none;
@@ -29,7 +51,7 @@
       align-items: center;
       padding: 10px 20px;
       background-color: #f8f8f8;
-      position: sticky;
+      position: absolute;
       top: 0;
       z-index: 10;
     }
@@ -233,6 +255,37 @@
 .nav-menu li img {
   width: 120px;
   height: auto;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  z-index: 0;
+}
+
+/* 疑似要素で背景レイヤーを作成 */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1; /* 背景として後ろに置く */
+}
+
+/* 中身のコンテンツ */
+.content {
+  position: relative;
+  z-index: 1;
+  color: white;
+  padding: 2rem;
+  height: 2000px; /* スクロール確認用 */
 }
 
 
@@ -588,7 +641,6 @@
       <li><a href="history.html"><img src="history.png" alt="HISTORY"></a></li>
     </ul>
   </nav>
-</header>
 
   <!-- ここに全HTMLを書いたあと -->
   <script>
